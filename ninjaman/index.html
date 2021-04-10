@@ -21,6 +21,14 @@
                 background-image: url('img/sushi.png');
                 background-size: contain;
             } 
+            .onigiri {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/onigiri.png');
+                background-size: contain;
+            }
             .blank {
                 background-color: black;
                 height: 40px;
@@ -52,23 +60,24 @@
     
         var world = [
             [1,1,1,1,1],
-            [1,0,2,2,1],
-            [1,2,1,2,1],
-            [1,2,2,2,1],
-            [1,2,2,2,1],
-            [1,2,2,2,1],
-            [1,2,1,2,1],
-            [1,2,2,2,1],
-            [1,2,2,2,1],
-            [1,2,2,2,1],
-            [1,2,1,2,1],
-            [1,2,2,2,1],
+            [1,0,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
+            [1,Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),Math.floor(Math.random() * 4),1],
             [1,1,1,1,1],
         ];
         var worldDict = {
             0: 'blank', 
             1: 'wall', 
-            2: 'sushi'
+            2: 'sushi',
+            3: 'onigiri'
         }
 
         function drawWorld(){
@@ -113,6 +122,9 @@
                 }
                  if (world[ninjaman.y][ninjaman.x] == 2){
                 scoreCount++;
+                }
+                if (world[ninjaman.y][ninjaman.x] == 3){
+                scoreCount= scoreCount+5;
                 }
                 world[ninjaman.y][ninjaman.x] = 0;
                 drawNinjaman();
