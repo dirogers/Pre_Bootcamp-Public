@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<!-- saved from url=(0063)file:///Users/ianrogers/Pre_Bootcamp-Public/airplane/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 	<title></title>
 </head>
 <body>
@@ -27,7 +27,7 @@
         width:70px;
         height:75px;
     }
-    .missile {
+    .missle {
         position: absolute;
         background-image: url("img/missile.png");
         width:10px;
@@ -36,11 +36,8 @@
 	</style>
 
     <div id="ocean">
-        <div id="players">
-        </div>
-        <div id="enemies">
-            <div class="enemy"></div>
-        </div>
+        <div id="players"><div class="player" style="left:470px; top:620px"></div></div>
+        <div id="enemies"><div class="enemy" style="left:350px; top:675px"></div><div class="enemy" style="left:425px; top:725px"></div><div class="enemy" style="left:500px; top:775px"></div><div class="enemy" style="left:575px; top:825px"></div></div>
         <div id="missile"></div>
     </div>
 
@@ -81,32 +78,29 @@
 
     function moveEnemies() {
         for(var idx=0; idx<enemies.length; idx++){
-            enemies[idx].top = enemies[idx].top + 1;
+            enemies[idx].top = enemies[idx].top + 5;
         }
     }
 
     function drawMissile() {
         content = "";
         for(var idx=0; idx<missile.length; idx++){
-            content += "<div class='missile' style='left:"+ missile[idx].left+"px; top:" +missile[idx].top+ "px;'></div>"
+            conent += "<div class='missile' style='left:"+ missile[idx].left+"; top:" +missile[idx].top+ "px'></div>"
         }
         document.getElementById("missile").innerHTML = content;
 
     }
 
     function moveMissile() {
-        for(var idx=0; idx<missile.length; idx++){
-            missile[idx].top = missile[idx].top - 30;
-        }
 
     }
 
     document.onkeydown = function(e) {
         if(e.keyCode == 37){
-             player.left = player.left - 15;
+             player.left = player.left - 10;
         }
         if(e.keyCode == 39){
-             player.left = player.left + 15;
+             player.left = player.left + 10;
         }
         if(e.keyCode == 38 && player.top>400){
              player.top = player.top - 10;
@@ -116,7 +110,6 @@
         }
         if(e.keyCode == 32){ //fire missile
             missile.push({left: (player.left+34), top: (player.top-8)})
-            drawMissile();
         }
         drawPlayer();
     }
@@ -125,16 +118,11 @@
     
     function gameLoop(){
         drawPlayer();
-
         moveEnemies();
         drawEnemies();
-
-        moveMissile();
-        drawMissile();
-        
-       setTimeout(gameLoop, 70)
+       setTimeout(gameLoop, 250)
     }
     gameLoop();
 	</script>
-</body>
-</html>
+
+</body></html>
